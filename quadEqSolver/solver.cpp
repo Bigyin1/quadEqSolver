@@ -39,19 +39,9 @@ static double evalRoot (const quadEquation eq, const char sign) {
 }
 
 
-static bool assertCoefficient (const double coeff) {
-
-    int type = fpclassify(coeff);
-    if (type != FP_ZERO && type != FP_NORMAL) {
-        return false;
-    }
-    return true;
-}
-
-
 eqSolution solveQuadEq (const quadEquation eq) {
     eqSolution s = {.x1 = NAN, .x2 = NAN, .x = NAN};
-    if (!assertCoefficient(eq.a) || !assertCoefficient(eq.b) || !assertCoefficient(eq.c)) {
+    if (!isfinite(eq.a) || !isfinite(eq.b) || !isfinite(eq.c)) {
         s.anyX = false;
         s.hasSolution = false;
         return s;
