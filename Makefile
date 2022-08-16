@@ -39,6 +39,12 @@ OBJ_DIRS = $(dir $(OBJS))
 
 $(shell mkdir -p $(OBJ_DIRS))
 
+.PHONY: all
+all: $(BUILD_DIR)/$(EXECUTABLE) docs
+
+.PHONY: bin
+bin: $(BUILD_DIR)/$(EXECUTABLE)
+
 
 $(BUILD_DIR)/$(EXECUTABLE): $(OBJS)
 	@$(CC) $(CPPFLAGS) $^ -o $@
@@ -48,9 +54,11 @@ $(BUILD_DIR)/%.o: %.cpp
 	@$(CC) -c -o $@ $< $(CPPFLAGS)
 
 
-doxygen: $(SRCS) $(INCLUDES)
+docs: $(SRCS) $(INCLUDES)
 	doxygen Doxyfile
 
 
+.PHONY: clean
 clean:
 	rm -r $(BUILD_DIR)
+	rm -r ./docs

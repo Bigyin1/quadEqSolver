@@ -80,8 +80,7 @@ static void interactive () {
 /**
  *  @brief Entrypoint
  */
-int main (int argc, char **)
-{
+int main (int argc, char **) {
   if (argc > 1) {
     runTests();
     return 0;
