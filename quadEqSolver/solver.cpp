@@ -6,67 +6,80 @@
 #include "solver.hpp"
 
 
-static eqSolution solveLinear (const double b, const double c) {
-    eqSolution s = {.x1 = NAN, .x2 = NAN, .x = NAN};
+bool cmpFloats (double d1, double d2) {
 
-    if (fpclassify(b) == FP_ZERO && fpclassify(c) == FP_ZERO) {
-        s.anyX = true;
-        s.hasSolution = true;
-        return s;
-    }
-    if (fpclassify(b) == FP_ZERO) {
-        s.anyX = false;
-        s.hasSolution = false;
-        return s;
-    }
+  if (fpclassify(d1) != fpclassify(d2)) {
+    return false;
+  }
 
-    s.anyX = false;
-    s.hasSolution = true;
+  double diff = fabs(d1 - d2);
+  if (isnan(diff)) {
+    return true;
+  }
 
-    s.x = -c / b;
-    return s;
+  const double eps = 1.0e-8;
+  const double threshold = 1.0;
+
+  d1 = fabs(d1);
+  d2 = fabs(d2);
+  double largest = (d2 > d1) ? d2 : d1;
+  largest = (largest < threshold) ? threshold : largest;
+
+  if (diff <= largest * eps) {
+    return true;
+  }
+
+  return false;
 }
 
 
-static double evalRoot (const quadEquation eq, const char sign) {
+void solveLinear (eqSolution *s, const double b, const double c) {
+    assert(s != NULL);
 
-    if (sign != 1 && sign != -1) {
-        assert("fool");
+    if (cmpFloats(b, 0) && cmpFloats(c, 0)) {
+        s->state = INF_ROOTS;
+        return;
+    }
+    if (cmpFloats(b, 0)) {
+        s->state = NO_ROOTS;
+        return;
     }
 
-    double descriminant = pow(eq.b, 2.0) - 4.0 * eq.a * eq.c;
-    return (-eq.b + sign * sqrt(descriminant)) / (2.0 * eq.a);
+    s->state = ONE_ROOT;
+    s->x1 = -c / b;
 }
 
 
-eqSolution solveQuadEq (const quadEquation eq) {
-    eqSolution s = {.x1 = NAN, .x2 = NAN, .x = NAN};
-    if (!isfinite(eq.a) || !isfinite(eq.b) || !isfinite(eq.c)) {
-        s.anyX = false;
-        s.hasSolution = false;
-        return s;
+static double evalRoot (const quadEquation *eq, const double descriminantRootSigned) {
+    assert(eq != NULL);
+
+    return (-eq->b + descriminantRootSigned) / (2.0 * eq->a);
+}
+
+
+void solveQuadEq (const quadEquation *eq,  eqSolution *s) {
+    assert(eq != NULL && s != NULL);
+
+    s->x1 = NAN;
+    s->x2 = NAN;
+
+    if (!isfinite(eq->a) || !isfinite(eq->b) || !isfinite(eq->c)) {
+        s->state = NO_ROOTS;
+        return;
     }
 
-
-    if (fpclassify(eq.a) == FP_ZERO) {
-        return solveLinear (eq.b, eq.c);
+    if (cmpFloats(eq->a, 0)) {
+        solveLinear (s, eq->b, eq->c);
+        return;
     }
 
-    s.anyX = false;
-
-
-    const char plus = 1;
-    const char minus = -1;
-    if (isnan(s.x1 = evalRoot(eq, plus))) {
-        s.hasSolution = false;
-        return s;
+    double descriminantRoot = sqrt(pow(eq->b, 2.0) - 4.0 * eq->a * eq->c);
+    if (isnan(descriminantRoot)) {
+        s->state = NO_ROOTS;
+        return;
     }
+    s->x1 = evalRoot(eq, descriminantRoot);
+    s->x2 = evalRoot(eq, -descriminantRoot);
 
-    if (isnan(s.x2 = evalRoot(eq, minus))) {
-        s.hasSolution = false;
-        return s;
-    }
-
-    s.hasSolution = true;
-    return s;
+    s->state = TWO_ROOTS;
 }

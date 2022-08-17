@@ -12,8 +12,8 @@
  */
 typedef struct testCase {
   const char *label; /**< Test name */
-  quadEquation eq; /**< Input equation  */
-  eqSolution s; /**< Input equation solution for comparison */
+  quadEquation testCoeffs; /**< Input equation  */
+  eqSolution refSolution; /**< Input equation solution for comparison */
 } testCase;
 
 
@@ -27,6 +27,6 @@ typedef struct testCase {
  *  @return true if tolerance test passes
  *
  */
-bool cmpSolutions (const eqSolution s1, const eqSolution s2);
+bool cmpSolutions (const eqSolution *s1, const eqSolution *s2);
 
 #endif
