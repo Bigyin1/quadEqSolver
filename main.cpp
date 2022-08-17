@@ -46,6 +46,8 @@ static void interactive () {
   double a, b, c;
   int read;
 
+  printf("Enter 3 coefficients:\n");
+
   while ((read = scanf("%lf %lf %lf", &a, &b, &c)) != EOF) {
     if (read != 3) {
       printf("Wrong input\n");
@@ -70,10 +72,8 @@ static void interactive () {
       continue;
     }
 
-    printf("Two solution:\tx1 = %lf\tx2 = %lf\n", s.x1, s.x2);
-
+    printf("Two solutions:\tx1 = %lf\tx2 = %lf\n", s.x1, s.x2);
   }
-
 }
 
 
@@ -85,8 +85,6 @@ int main (int argc, char **) {
     runTests();
     return 0;
   }
-
   interactive();
-
   return 0;
 }

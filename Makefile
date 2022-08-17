@@ -32,15 +32,18 @@ CPPFLAGS = -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall \
 
 
 BUILD_DIR = build
+DOCS_DIR = docs
 
 OBJS = $(patsubst %.cpp, $(BUILD_DIR)/%.o, $(SRCS))
+
+
 OBJ_DIRS = $(dir $(OBJS))
-
-
 $(shell mkdir -p $(OBJ_DIRS))
 
+
 .PHONY: all
-all: $(BUILD_DIR)/$(EXECUTABLE) docs
+all: $(BUILD_DIR)/$(EXECUTABLE) $(DOCS_DIR)
+
 
 .PHONY: bin
 bin: $(BUILD_DIR)/$(EXECUTABLE)
@@ -54,11 +57,11 @@ $(BUILD_DIR)/%.o: %.cpp
 	@$(CC) -c -o $@ $< $(CPPFLAGS)
 
 
-docs: $(SRCS) $(INCLUDES)
-	doxygen Doxyfile
+$(DOCS_DIR): $(SRCS) $(INCLUDES)
+	OUTPUT_DIRECTORY=$(DOCS_DIR) $(DOXYGEN)
 
 
 .PHONY: clean
 clean:
 	rm -r $(BUILD_DIR)
-	rm -r ./docs
+	rm -r $(DOCS_DIR)
