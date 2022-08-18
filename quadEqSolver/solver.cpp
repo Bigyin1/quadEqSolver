@@ -18,14 +18,7 @@ bool isEqualFloats (double d1, double d2) {
   }
 
   const double eps = 1.0e-8;
-  const double threshold = 1.0;
-
-  d1 = fabs(d1);
-  d2 = fabs(d2);
-  double largest = (d2 > d1) ? d2 : d1;
-  largest = (largest < threshold) ? threshold : largest;
-
-  if (diff <= largest * eps) {
+  if (diff <= eps) {
     return true;
   }
 
