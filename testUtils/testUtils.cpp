@@ -14,7 +14,7 @@ bool cmpSolutions (const eqSolution *s1, const eqSolution *s2) {
     return false;
   }
 
-  if (!cmpFloats(s1->x1, s2->x1) || !cmpFloats(s1->x2, s2->x2)) {
+  if (!isEqualFloats(s1->x1, s2->x1) || !isEqualFloats(s1->x2, s2->x2)) {
     return false;
   }
 

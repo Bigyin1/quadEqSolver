@@ -6,7 +6,7 @@
 #include "solver.hpp"
 
 
-bool cmpFloats (double d1, double d2) {
+bool isEqualFloats (double d1, double d2) {
 
   if (fpclassify(d1) != fpclassify(d2)) {
     return false;
@@ -36,11 +36,11 @@ bool cmpFloats (double d1, double d2) {
 void solveLinear (eqSolution *s, const double b, const double c) {
     assert(s != NULL);
 
-    if (cmpFloats(b, 0) && cmpFloats(c, 0)) {
+    if (isEqualFloats(b, 0) && isEqualFloats(c, 0)) {
         s->state = INF_ROOTS;
         return;
     }
-    if (cmpFloats(b, 0)) {
+    if (isEqualFloats(b, 0)) {
         s->state = NO_ROOTS;
         return;
     }
@@ -68,7 +68,7 @@ void solveQuadEq (const quadEquation *eq,  eqSolution *s) {
         return;
     }
 
-    if (cmpFloats(eq->a, 0)) {
+    if (isEqualFloats(eq->a, 0)) {
         solveLinear (s, eq->b, eq->c);
         return;
     }

@@ -68,6 +68,6 @@ void solveLinear (eqSolution *s, const double b, const double c);
  *  @param d2 reference flost
  *  @return true if tolerance test passes
  */
-bool cmpFloats (double d1, double d2);
+bool isEqualFloats (double d1, double d2);
 
 #endif
