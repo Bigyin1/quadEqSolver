@@ -24,7 +24,7 @@ bool cmpSolutions (const eqSolution *s1, const eqSolution *s2) {
 
 
 void runTests (const testCase tests[], const size_t testsCount) {
-  uint passed = 0, failed = 0;
+  uint passed = 0;
 
   for (uint i = 0; i < testsCount; ++i) {
     testCase test = tests[i];
@@ -36,9 +36,8 @@ void runTests (const testCase tests[], const size_t testsCount) {
       ++passed;
       printf("PASS\n");
     } else {
-      ++failed;
       printf("FAIL\n");
     }
   }
-  printf("PASSED: %u\tFAILED: %u\n", passed, failed);
+  printf("PASSED: %u\tFAILED: %lu\n", passed, testsCount - passed);
 }
