@@ -20,8 +20,8 @@ typedef struct testCase {
 /**
  *  @brief Compares quadratic equations solutions
  *  @details
- *    Uses combined tolerance test(http://realtimecollisiondetection.net/blog/?p=89) to compare roots
- *    epsilon = 1.0e-8;  threshold = 1.0
+ *    Uses tolerance test to compare roots
+ *    epsilon = 1.0e-8
  *  @param s1 solution to be tested
  *  @param s2 reference solution
  *  @return true if tolerance test passes
