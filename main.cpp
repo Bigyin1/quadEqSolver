@@ -29,7 +29,7 @@ static void interactive () {
   double a = NAN, b = NAN, c = NAN;
   int read = 0;
 
-  printf("Enter 3 coefficients:\n");
+  printf("Enter 3 real coefficients for quadratic equation:\n");
 
   while ((read = scanf("%lf %lf %lf", &a, &b, &c)) != EOF) {
     if (read != 3) {
@@ -57,7 +57,7 @@ static void interactive () {
         printf("Two solutions:\tx1 = %lf\tx2 = %lf\n", s.x1, s.x2);
         break;
       default:
-        fprintf(stderr, "something bad happened\n");
+        fprintf(stderr, " undefined eqSolution state\n");
         exit(EXIT_FAILURE);
     }
   }
