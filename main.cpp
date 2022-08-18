@@ -57,7 +57,7 @@ static void interactive () {
         printf("Two solutions:\tx1 = %lf\tx2 = %lf\n", s.x1, s.x2);
         break;
       default:
-        fprintf(stderr, " undefined eqSolution state\n");
+        fprintf(stderr, "undefined eqSolution state\n");
         exit(EXIT_FAILURE);
     }
   }
