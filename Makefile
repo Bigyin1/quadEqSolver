@@ -8,7 +8,8 @@ SRCS = main.cpp \
 	testUtils/testUtils.cpp
 
 INCLUDES = quadEqSolver/solver.hpp \
-	testUtils/testUtils.hpp
+	testUtils/testUtils.hpp \
+	testdata.hpp
 
 CPPFLAGS = -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall \
 	-Wextra -Weffc++ -Waggressive-loop-optimizations \

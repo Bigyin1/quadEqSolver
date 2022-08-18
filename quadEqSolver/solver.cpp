@@ -6,7 +6,7 @@
 #include "solver.hpp"
 
 
-bool isEqualFloats (double d1, double d2) {
+bool isEqual (double d1, double d2) {
 
   if (fpclassify(d1) != fpclassify(d2)) {
     return false;
@@ -26,27 +26,25 @@ bool isEqualFloats (double d1, double d2) {
 }
 
 
-void solveLinear (eqSolution *s, const double b, const double c) {
+static bool isZero (double d) {
+  return isEqual(d, 0);
+}
+
+
+void solveLinearEq (eqSolution *s, const double b, const double c) {
     assert(s != NULL);
 
-    if (isEqualFloats(b, 0) && isEqualFloats(c, 0)) {
+    if (isZero(b) && isZero(c)) {
         s->state = INF_ROOTS;
         return;
     }
-    if (isEqualFloats(b, 0)) {
+    if (isZero(b)) {
         s->state = NO_ROOTS;
         return;
     }
 
     s->state = ONE_ROOT;
     s->x1 = -c / b;
-}
-
-
-static double evalRoot (const quadEquation *eq, const double descriminantRootSigned) {
-    assert(eq != NULL);
-
-    return (-eq->b + descriminantRootSigned) / (2.0 * eq->a);
 }
 
 
@@ -61,8 +59,8 @@ void solveQuadEq (const quadEquation *eq,  eqSolution *s) {
         return;
     }
 
-    if (isEqualFloats(eq->a, 0)) {
-        solveLinear (s, eq->b, eq->c);
+    if (isZero(eq->a)) {
+        solveLinearEq (s, eq->b, eq->c);
         return;
     }
 
@@ -71,8 +69,8 @@ void solveQuadEq (const quadEquation *eq,  eqSolution *s) {
         s->state = NO_ROOTS;
         return;
     }
-    s->x1 = evalRoot(eq, descriminantRoot);
-    s->x2 = evalRoot(eq, -descriminantRoot);
+    s->x1 = (-eq->b + descriminantRoot) / (2.0 * eq->a);
+    s->x2 = (-eq->b - descriminantRoot) / (2.0 * eq->a);
 
     s->state = TWO_ROOTS;
 }

@@ -29,4 +29,12 @@ typedef struct testCase {
  */
 bool cmpSolutions (const eqSolution *s1, const eqSolution *s2);
 
+
+/**
+ *  @brief Runs tests
+ *  @param tests array
+ *
+ */
+void runTests (const testCase tests[], size_t testsCount);
+
 #endif
