@@ -43,7 +43,7 @@ void runTests(const testCase tests[], const size_t testsCount) {
   for (uint i = 0; i < testsCount; ++i) {
     testCase test = tests[i];
 
-    printf("%u\t%s: ", i+1, test.label);
+    printf("Test №%u:\t\t%s: ", i+1, test.label);
     eqSolution s = {.x1 = NAN, .x2 = NAN, .state = NO_ROOTS};
     solveQuadEq (&test.testEquation, &s);
     if (cmpSolutions(&s, &test.refSolution)) {
