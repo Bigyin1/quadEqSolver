@@ -1,12 +1,36 @@
 ## Quad Equation Solver
 
-Programm to solve quadratic equation with real coefficients.
+* [Installation](#installation)
+* [Usage](#usage)
+* [Docs](#docs)
+
+# Installation
+You should have `git` , `make` and `g++ compiler` installed.
+* Clone this repository:
+    * `git clone https://github.com/Bigyin1/quadEqSolver.git`
+ * Build the program:
+    * `cd quadEqSolver`
+    * `make bin`
+ * Build docs:
+    * `make docs`
+ * Run tests:
+    * `./build/bin test`
 
 
-```make all``` &nbsp; *build project and docs*
+## Usage
+Solves quadratic equation with real coefficients:
 
-```./build/bin test```&nbsp; *run tests*
+`./build/bin`
 
-```./build/bin ```&nbsp; *interactive mode*
+Enter 3 real coefficients for quadratic equation:
+
+`1 2 1`
+
+See a result at standard output.
+
+
+## Docs
+If you want to use some modules or modify the whole program, you can check the documetation.
+>Check `<local_path_to_repo>/docs`
 
 
