@@ -18,8 +18,8 @@ static void readOutTermInputQueue() {
 static void printQuadEquation(const quadEquation *eq) {
   assert(eq != NULL);
   printf("Solved  %lf(x^2)", eq->a);
-  eq->b >= 0 ? printf(" + %lf(x)", eq->b) : printf(" - %lf(x)", fabs(eq->b));
-  eq->c >= 0 ? printf(" + %lf(x)", eq->c) : printf(" - %lf(x)", fabs(eq->c));
+  printf(" %c %lf(x)",eq->b >= 0 ? '+' : '-', fabs(eq->b));
+  printf(" %c %lf(x)",eq->c >= 0 ? '+' : '-', fabs(eq->c));
   printf(" = 0\t");
 }
 
