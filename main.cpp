@@ -33,7 +33,7 @@ static void interactive() {
 
     quadEquation eq = {.a = a, .b = b, .c = c};
     eqSolution s = {.x1 = NAN, .x2 = NAN, .state = NO_ROOTS};
-    solveQuadEq (&eq, &s);
+    solveQuadEq(&eq, &s);
 
     printf("Solved: ");
     printQuadEquation(&eq);
@@ -65,17 +65,17 @@ int main(int argc, char **argv) {
 
   if (argc > 2) {
     printf("Wrong program arguments count\n");
-    return 1;
+    return EXIT_FAILURE;
   }
   if (argc == 2) {
     if (strcmp(argv[1], "test") == 0) {
-      runTests(tests, sizeof(tests)/sizeof(testCase));
-      return 0;
+      runTests(tests, sizeof(tests) / sizeof(testCase));
+      return EXIT_SUCCESS;
     }
     printf("Wrong program argument: %s\n", argv[1]);
-    return 1;
+    return EXIT_FAILURE;
   }
 
   interactive();
-  return 0;
+  return EXIT_SUCCESS;
 }

@@ -60,7 +60,7 @@ void solveQuadEq(const quadEquation *eq,  eqSolution *s) {
     }
 
     if (isZero(eq->a)) {
-        solveLinearEq (s, eq->b, eq->c);
+        solveLinearEq(s, eq->b, eq->c);
         return;
     }
 

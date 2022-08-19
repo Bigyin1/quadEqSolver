@@ -131,4 +131,56 @@ const testCase tests[] = {
       .state = NO_ROOTS
     }
   },
+  {
+    "Wrong Coeffs",
+    {
+      .a = 0.1,
+      .b = INFINITY,
+      .c = 0.000678
+    },
+    {
+      .x1 = NAN,
+      .x2 = NAN,
+      .state = NO_ROOTS
+    }
+  },
+  {
+    "Wrong Coeffs",
+    {
+      .a = 0.1,
+      .b = NAN,
+      .c = 0.2
+    },
+    {
+      .x1 = NAN,
+      .x2 = NAN,
+      .state = NO_ROOTS
+    }
+  },
+  {
+    "Wrong Coeffs",
+    {
+      .a = 0.1,
+      .b = 0.3,
+      .c = NAN
+    },
+    {
+      .x1 = NAN,
+      .x2 = NAN,
+      .state = NO_ROOTS
+    }
+  },
+  {
+    "Wrong Coeffs",
+    {
+      .a = 0.1,
+      .b = 0.3,
+      .c = INFINITY
+    },
+    {
+      .x1 = NAN,
+      .x2 = NAN,
+      .state = NO_ROOTS
+    }
+  }
 };
