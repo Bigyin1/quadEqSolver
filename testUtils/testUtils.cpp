@@ -7,6 +7,11 @@
 #include "testUtils.hpp"
 
 
+#define GREEN "\x1b[92m"
+#define RED "\x1b[91m"
+#define RESET_COLOUR "\x1b[0m"
+
+
 void printQuadEquation(const quadEquation *eq) {
   assert(eq != NULL);
 
@@ -38,14 +43,14 @@ void runTests(const testCase tests[], const size_t testsCount) {
   for (uint i = 0; i < testsCount; ++i) {
     testCase test = tests[i];
 
-    printf("%s: ", test.label);
+    printf("%u\t%s: ", i+1, test.label);
     eqSolution s = {.x1 = NAN, .x2 = NAN, .state = NO_ROOTS};
     solveQuadEq (&test.testEquation, &s);
     if (cmpSolutions(&s, &test.refSolution)) {
       ++passed;
-      printf("PASS\n");
+      printf("" GREEN "PASS" RESET_COLOUR "\n");
     } else {
-      printf("FAIL\t");
+      printf("" RED "FAIL" RESET_COLOUR "\t");
       printQuadEquation(&test.testEquation);
       putchar('\n');
     }
