@@ -1,11 +1,12 @@
-Решает квадратное уравнение с действительными коэффициентами.
+## Quad Equation Solver
 
-```
+Programm to solve quadratic equation with real coefficients.
 
-make all // сборка проекта и документации
 
-./build/bin test    // запуск тестов
+```make all``` &nbsp; *build project and docs*
 
-./build/bin    // интерактивный режим
+```./build/bin test```&nbsp; *run tests*
 
-```
+```./build/bin ```&nbsp; *interactive mode*
+
+
