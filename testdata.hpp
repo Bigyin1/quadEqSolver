@@ -1,3 +1,5 @@
+/** @file  Data for quad equation tests */
+
 const testCase tests[] = {
   {
     "Linear No Root",

@@ -54,7 +54,7 @@ $(BUILD_DIR)/$(EXECUTABLE): $(OBJS)
 	@$(CC) $(CPPFLAGS) $^ -o $@
 
 
-$(BUILD_DIR)/%.o: %.cpp
+$(BUILD_DIR)/%.o: %.cpp $(INCLUDES)
 	@$(CC) -c -o $@ $< $(CPPFLAGS)
 
 

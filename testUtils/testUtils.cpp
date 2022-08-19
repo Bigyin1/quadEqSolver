@@ -7,8 +7,17 @@
 #include "testUtils.hpp"
 
 
+void printQuadEquation(const quadEquation *eq) {
+  assert(eq != NULL);
 
-bool cmpSolutions (const eqSolution *s1, const eqSolution *s2) {
+  printf("%lf(x^2)", eq->a);
+  printf(" %c %lf(x)",eq->b >= 0 ? '+' : '-', fabs(eq->b));
+  printf(" %c %lf",eq->c >= 0 ? '+' : '-', fabs(eq->c));
+  printf(" = 0");
+}
+
+
+bool cmpSolutions(const eqSolution *s1, const eqSolution *s2) {
   assert(s1 != NULL && s2 != NULL && s1 != s2);
 
   if (s1->state != s2->state) {
@@ -23,7 +32,7 @@ bool cmpSolutions (const eqSolution *s1, const eqSolution *s2) {
 }
 
 
-void runTests (const testCase tests[], const size_t testsCount) {
+void runTests(const testCase tests[], const size_t testsCount) {
   uint passed = 0;
 
   for (uint i = 0; i < testsCount; ++i) {
@@ -31,12 +40,14 @@ void runTests (const testCase tests[], const size_t testsCount) {
 
     printf("%s: ", test.label);
     eqSolution s = {.x1 = NAN, .x2 = NAN, .state = NO_ROOTS};
-    solveQuadEq (&test.testCoeffs, &s);
+    solveQuadEq (&test.testEquation, &s);
     if (cmpSolutions(&s, &test.refSolution)) {
       ++passed;
       printf("PASS\n");
     } else {
-      printf("FAIL\n");
+      printf("FAIL\t");
+      printQuadEquation(&test.testEquation);
+      putchar('\n');
     }
   }
   printf("PASSED: %u\tFAILED: %lu\n", passed, testsCount - passed);

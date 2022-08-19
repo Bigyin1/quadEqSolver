@@ -6,6 +6,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <string.h>
 #include "quadEqSolver/solver.hpp"
 #include "testUtils/testUtils.hpp"
 #include "testdata.hpp"
@@ -15,16 +16,8 @@ static void readOutTermInputQueue() {
   while (getchar() != '\n'){}
 }
 
-static void printQuadEquation(const quadEquation *eq) {
-  assert(eq != NULL);
-  printf("Solved  %lf(x^2)", eq->a);
-  printf(" %c %lf(x)",eq->b >= 0 ? '+' : '-', fabs(eq->b));
-  printf(" %c %lf(x)",eq->c >= 0 ? '+' : '-', fabs(eq->c));
-  printf(" = 0\t");
-}
 
-
-static void interactive () {
+static void interactive() {
 
   double a = NAN, b = NAN, c = NAN;
   int read = 0;
@@ -42,19 +35,20 @@ static void interactive () {
     eqSolution s = {.x1 = NAN, .x2 = NAN, .state = NO_ROOTS};
     solveQuadEq (&eq, &s);
 
+    printf("Solved: ");
     printQuadEquation(&eq);
     switch (s.state) {
       case NO_ROOTS:
-        printf("No solutions\n");
+        printf("\tNo solutions\n");
         break;
       case INF_ROOTS:
-        printf("Infinite number of solutions\n");
+        printf("\tInfinite number of solutions\n");
         break;
       case ONE_ROOT:
-        printf("One solution:\tx = %lf\n", s.x1);
+        printf("\tOne solution:\tx = %lf\n", s.x1);
         break;
       case TWO_ROOTS:
-        printf("Two solutions:\tx1 = %lf\tx2 = %lf\n", s.x1, s.x2);
+        printf("\tTwo solutions:\tx1 = %lf\tx2 = %lf\n", s.x1, s.x2);
         break;
       default:
         fprintf(stderr, "undefined eqSolution state\n");
@@ -67,11 +61,21 @@ static void interactive () {
 /**
  *  @brief Entrypoint
  */
-int main (int argc, char **) {
-  if (argc > 1) {
-    runTests(tests, sizeof(tests)/sizeof(tests[0]));
-    return 0;
+int main(int argc, char **argv) {
+
+  if (argc > 2) {
+    printf("Wrong program arguments count\n");
+    return 1;
   }
+  if (argc == 2) {
+    if (strcmp(argv[1], "test") == 0) {
+      runTests(tests, sizeof(tests)/sizeof(testCase));
+      return 0;
+    }
+    printf("Wrong program argument: %s\n", argv[1]);
+    return 1;
+  }
+
   interactive();
   return 0;
 }

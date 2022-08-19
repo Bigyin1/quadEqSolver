@@ -9,7 +9,7 @@
 struct quadEquation
 {
     double a; /**< x^2 coefficient */
-    double b; /**< x coefficient */
+    double b; /**< x^1 coefficient */
     double c; /**< x^0 coefficient */
 };
 
@@ -47,7 +47,7 @@ typedef struct eqSolution eqSolution;
  *  @param eq   Pointer to equation coefficients structure
  *  @param s    Pointer to equation solution structure
  */
-void solveQuadEq (const quadEquation *eq,  eqSolution *s);
+void solveQuadEq(const quadEquation *eq,  eqSolution *s);
 
 /**
  *  @brief Solves linear equation
@@ -56,7 +56,7 @@ void solveQuadEq (const quadEquation *eq,  eqSolution *s);
  *  @param c  free coefficient
  *  @return Equation solution structure
  */
-void solveLinearEq (eqSolution *s, const double b, const double c);
+void solveLinearEq(eqSolution *s, const double b, const double c);
 
 
 /**
@@ -68,6 +68,6 @@ void solveLinearEq (eqSolution *s, const double b, const double c);
  *  @param d2 reference flost
  *  @return true if tolerance test passes
  */
-bool isEqual (double d1, double d2);
+bool isEqual(double d1, double d2);
 
 #endif

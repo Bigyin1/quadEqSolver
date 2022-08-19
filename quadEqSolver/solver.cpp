@@ -6,7 +6,7 @@
 #include "solver.hpp"
 
 
-bool isEqual (double d1, double d2) {
+bool isEqual(double d1, double d2) {
 
   if (fpclassify(d1) != fpclassify(d2)) {
     return false;
@@ -26,12 +26,12 @@ bool isEqual (double d1, double d2) {
 }
 
 
-static bool isZero (double d) {
+static bool isZero(double d) {
   return isEqual(d, 0);
 }
 
 
-void solveLinearEq (eqSolution *s, const double b, const double c) {
+void solveLinearEq(eqSolution *s, const double b, const double c) {
     assert(s != NULL);
 
     if (isZero(b) && isZero(c)) {
@@ -48,7 +48,7 @@ void solveLinearEq (eqSolution *s, const double b, const double c) {
 }
 
 
-void solveQuadEq (const quadEquation *eq,  eqSolution *s) {
+void solveQuadEq(const quadEquation *eq,  eqSolution *s) {
     assert(eq != NULL && s != NULL);
 
     s->x1 = NAN;

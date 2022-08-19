@@ -12,10 +12,17 @@
  */
 typedef struct testCase {
   const char *label; /**< Test name */
-  quadEquation testCoeffs; /**< Input equation  */
+  quadEquation testEquation; /**< Input equation  */
   eqSolution refSolution; /**< Input equation solution for comparison */
 } testCase;
 
+
+/**
+ *  @brief Prints quad equation w/o newline
+ *  @param eq equation coefficients
+ *
+ */
+void printQuadEquation(const quadEquation *eq);
 
 /**
  *  @brief Compares quadratic equations solutions
@@ -27,7 +34,7 @@ typedef struct testCase {
  *  @return true if tolerance test passes
  *
  */
-bool cmpSolutions (const eqSolution *s1, const eqSolution *s2);
+bool cmpSolutions(const eqSolution *s1, const eqSolution *s2);
 
 
 /**
@@ -35,6 +42,6 @@ bool cmpSolutions (const eqSolution *s1, const eqSolution *s2);
  *  @param tests array
  *
  */
-void runTests (const testCase tests[], size_t testsCount);
+void runTests(const testCase tests[], size_t testsCount);
 
 #endif
