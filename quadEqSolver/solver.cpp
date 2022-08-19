@@ -64,13 +64,13 @@ void solveQuadEq(const quadEquation *eq,  eqSolution *s) {
         return;
     }
 
-    double descriminantRoot = sqrt(pow(eq->b, 2.0) - 4.0 * eq->a * eq->c);
+    double descriminantRoot = sqrt(pow(eq->b, 2) - 4 * eq->a * eq->c);
     if (isnan(descriminantRoot)) {
         s->state = NO_ROOTS;
         return;
     }
-    s->x1 = (-eq->b + descriminantRoot) / (2.0 * eq->a);
-    s->x2 = (-eq->b - descriminantRoot) / (2.0 * eq->a);
+    s->x1 = (-eq->b + descriminantRoot) / (2 * eq->a);
+    s->x2 = (-eq->b - descriminantRoot) / (2 * eq->a);
 
     s->state = TWO_ROOTS;
 }
