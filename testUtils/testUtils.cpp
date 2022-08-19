@@ -55,5 +55,6 @@ void runTests(const testCase tests[], const size_t testsCount) {
       putchar('\n');
     }
   }
-  printf("PASSED: %u\tFAILED: %lu\n", passed, testsCount - passed);
+  printf("" GREEN "PASSED:" RESET_COLOUR " %u\t" \
+   RED "FAILED:" RESET_COLOUR " %lu\n", passed, testsCount - passed);
 }
