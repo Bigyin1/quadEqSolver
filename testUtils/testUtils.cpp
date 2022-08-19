@@ -38,7 +38,7 @@ bool cmpSolutions(const eqSolution *s1, const eqSolution *s2) {
 
 
 void runTests(const testCase tests[], const size_t testsCount) {
-  uint passed = 0;
+  long unsigned int passed = 0;
 
   for (uint i = 0; i < testsCount; ++i) {
     testCase test = tests[i];
@@ -55,6 +55,6 @@ void runTests(const testCase tests[], const size_t testsCount) {
       putchar('\n');
     }
   }
-  printf("" GREEN "PASSED:" RESET_COLOUR " %u\t" \
+  printf("" GREEN "PASSED:" RESET_COLOUR " %lu\t" \
    RED "FAILED:" RESET_COLOUR " %lu\n", passed, testsCount - passed);
 }
