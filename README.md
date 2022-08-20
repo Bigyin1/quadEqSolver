@@ -1,10 +1,10 @@
-## Quad Equation Solver
+# Quad Equation Solver
 
 * [Installation](#installation)
 * [Usage](#usage)
 * [Docs](#docs)
 
-# Installation
+## Installation
 You should have `git` , `make` and `g++ compiler` installed.
 * Clone this repository:
     * `git clone https://github.com/Bigyin1/quadEqSolver.git`

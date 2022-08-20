@@ -20,12 +20,12 @@ static void readOutTermInputQueue() {
 static void interactive() {
 
   double a = NAN, b = NAN, c = NAN;
-  int read = 0;
+  int valuesRead = 0;
 
   printf("Enter 3 real coefficients for quadratic equation:\n");
 
-  while ((read = scanf("%lf %lf %lf", &a, &b, &c)) != EOF) {
-    if (read != 3) {
+  while ((valuesRead = scanf("%lf %lf %lf", &a, &b, &c)) != EOF) {
+    if (valuesRead != 3) {
       printf("Wrong input\n");
       readOutTermInputQueue();
       continue;
