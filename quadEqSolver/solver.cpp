@@ -3,7 +3,18 @@
 #include <math.h>
 #include <stdbool.h>
 #include <assert.h>
+#include <stdio.h>
 #include "solver.hpp"
+
+
+void printQuadEquation(const quadEquation *eq) {
+  assert(eq != NULL);
+
+  printf("%lf(x^2) ", eq->a);
+  printf("%c %lf(x) ", eq->b >= 0 ? '+' : '-', fabs(eq->b));
+  printf("%c %lf", eq->c >= 0 ? '+' : '-', fabs(eq->c));
+  printf(" = 0");
+}
 
 
 bool isEqual(double d1, double d2) {

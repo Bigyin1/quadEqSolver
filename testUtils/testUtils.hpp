@@ -18,13 +18,6 @@ typedef struct testCase {
 
 
 /**
- *  @brief Prints quad equation w/o newline
- *  @param eq equation coefficients
- *
- */
-void printQuadEquation(const quadEquation *eq);
-
-/**
  *  @brief Compares quadratic equations solutions
  *  @details
  *    Uses tolerance test to compare roots

@@ -12,15 +12,6 @@ const char *red = "\x1b[91m";
 const char *resetColour = "\x1b[0m";
 
 
-void printQuadEquation(const quadEquation *eq) {
-  assert(eq != NULL);
-
-  printf("%lf(x^2) ", eq->a);
-  printf("%c %lf(x) ", eq->b >= 0 ? '+' : '-', fabs(eq->b));
-  printf("%c %lf", eq->c >= 0 ? '+' : '-', fabs(eq->c));
-  printf(" = 0");
-}
-
 static void reportFailedTest(const quadEquation *eq) {
   assert(eq != NULL);
 

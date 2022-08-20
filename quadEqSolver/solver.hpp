@@ -70,4 +70,12 @@ void solveLinearEq(eqSolution *s, const double b, const double c);
  */
 bool isEqual(double d1, double d2);
 
+
+/**
+ *  @brief Prints quad equation w/o newline
+ *  @param eq equation coefficients
+ *
+ */
+void printQuadEquation(const quadEquation *eq);
+
 #endif
