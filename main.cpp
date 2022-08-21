@@ -13,7 +13,12 @@
 
 
 static void readOutTermInputQueue() {
-  while (getchar() != '\n'){}
+  int c = 0;
+  while (1) {
+    c = getchar();
+    if (c == '\n' || c == EOF)
+      return;
+  }
 }
 
 
