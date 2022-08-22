@@ -3,6 +3,7 @@ DOXYGEN = doxygen
 
 EXECUTABLE = bin
 
+
 SRCS = main.cpp \
 	quadEqSolver/solver.cpp \
 	testUtils/testUtils.cpp
@@ -31,14 +32,20 @@ CPPFLAGS = -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall \
 	-Wlarger-than=8192 -Wstack-usage=8192 -pie -fPIE \
 	-fsanitize=address,alignment,bool,bounds,enum,float-cast-overflow,float-divide-by-zero,integer-divide-by-zero,nonnull-attribute,leak,null,object-size,return,returns-nonnull-attribute,shift,signed-integer-overflow,undefined,unreachable,vla-bound,vptr
 
+DEPFLAGS = -MT $@ -MMD -MP -MF $(DEP_DIR)/$*.d
+
 
 BUILD_DIR = build
+DEP_DIR = $(BUILD_DIR)/deps
 DOCS_DIR = docs
 
-OBJS = $(patsubst %.cpp, $(BUILD_DIR)/%.o, $(SRCS))
 
+DEPFILES := $(SRCS:%.cpp=$(DEP_DIR)/%.d)
+DEP_DIRS := $(dir $(DEPFILES))
+$(shell mkdir -p $(DEP_DIRS))
 
-OBJ_DIRS = $(dir $(OBJS))
+OBJS := $(SRCS:%.cpp=$(BUILD_DIR)/%.o)
+OBJ_DIRS := $(dir $(OBJS))
 $(shell mkdir -p $(OBJ_DIRS))
 
 
@@ -50,17 +57,23 @@ all: $(BUILD_DIR)/$(EXECUTABLE) $(DOCS_DIR)
 bin: $(BUILD_DIR)/$(EXECUTABLE)
 
 
+
 $(BUILD_DIR)/$(EXECUTABLE): $(OBJS)
 	@$(CC) $(CPPFLAGS) $^ -o $@
 
 
-$(BUILD_DIR)/%.o: %.cpp $(INCLUDES)
-	@$(CC) -c -o $@ $< $(CPPFLAGS)
+$(BUILD_DIR)/%.o: %.cpp $(DEP_DIR)/%.d
+	@$(CC) -c -o $@ $< $(CPPFLAGS) $(DEPFLAGS)
+
+$(DEPFILES):
+
+include $(wildcard $(DEPFILES))
+
+
 
 
 $(DOCS_DIR): $(SRCS) $(INCLUDES)
-	OUTPUT_DIRECTORY=$(DOCS_DIR) $(DOXYGEN)
-
+	@OUTPUT_DIRECTORY=$(DOCS_DIR) $(DOXYGEN)
 
 .PHONY: clean
 clean:
