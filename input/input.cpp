@@ -52,7 +52,7 @@ static void reportEquationResults(quadEquation *eq, eqSolution *s) {
 
     default:
       fprintf(stderr, "undefined eqSolution state\n");
-      exit(EXIT_FAILURE);
+      abort();
   }
 }
 
