@@ -11,7 +11,11 @@ const char *green = "\x1b[92m";
 const char *red = "\x1b[91m";
 const char *resetColour = "\x1b[0m";
 
-
+/**
+ *  @brief Reports failed test and prints tested equation
+ *  @param eq tested equation
+ *
+ */
 static void reportFailedTest(const quadEquation *eq) {
   assert(eq != NULL);
 

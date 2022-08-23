@@ -1,3 +1,4 @@
+/** @file */
 #include <stdio.h>
 #include <float.h>
 #include <math.h>
@@ -9,7 +10,9 @@
 #include "../testUtils/testUtils.hpp"
 #include "interactive.hpp"
 
-
+/**
+ *  @brief Makes terminal input queue empty
+ */
 static void readOutTermInputQueue() {
   int c = 0;
   while (1) {
@@ -19,7 +22,11 @@ static void readOutTermInputQueue() {
   }
 }
 
-
+/**
+ *  @brief Prints quadratic equation results to user
+ *  @param eq equation coefficients
+ *  @param s equation results
+ */
 static void reportEquationResults(quadEquation *eq, eqSolution *s) {
   assert(eq != NULL && s != NULL);
 

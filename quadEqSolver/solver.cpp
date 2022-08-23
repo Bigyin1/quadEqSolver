@@ -36,7 +36,11 @@ bool isEqual(double d1, double d2) {
   return false;
 }
 
-
+/**
+ *  @brief Compares double with zero using epsilon
+ *  @param d compared value
+ *
+ */
 static bool isZero(double d) {
   return isEqual(d, 0);
 }
