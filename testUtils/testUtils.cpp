@@ -4,12 +4,20 @@
 #include <math.h>
 #include <assert.h>
 #include <stdio.h>
+#include <signal.h>
 #include "testUtils.hpp"
 
 
 const char *green = "\x1b[92m";
 const char *red = "\x1b[91m";
 const char *resetColour = "\x1b[0m";
+
+
+static void setupSignalHandling() {
+  signal(SIGSEGV, SIG_IGN);
+  signal(SIGFPE, SIG_IGN);
+}
+
 
 /**
  *  @brief Reports failed test and prints tested equation
@@ -39,6 +47,8 @@ bool cmpSolutions(const eqSolution *s1, const eqSolution *s2) {
 
 void runTests(const testCase tests[], const size_t testsCount) {
   long unsigned passed = 0;
+
+  setupSignalHandling();
 
   for (long unsigned i = 0; i < testsCount; ++i) {
     testCase test = tests[i];
