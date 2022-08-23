@@ -7,11 +7,11 @@ EXECUTABLE = bin
 SRCS = main.cpp \
 	quadEqSolver/solver.cpp \
 	testUtils/testUtils.cpp \
-	interactive/interactive.cpp
+	input/input.cpp
 
 INCLUDES = quadEqSolver/solver.hpp \
 	testUtils/testUtils.hpp \
-	interactive/interactive.hpp \
+	input/input.hpp \
 	testdata.hpp
 
 CPPFLAGS = -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall \
@@ -38,7 +38,7 @@ DEPFLAGS = -MT $@ -MMD -MP -MF $(DEP_DIR)/$*.d
 
 
 BUILD_DIR = build
-DEP_DIR = $(BUILD_DIR)/deps
+DEP_DIR = deps
 DOCS_DIR = docs
 
 

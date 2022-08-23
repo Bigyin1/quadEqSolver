@@ -14,19 +14,23 @@ You should have `git` , `make` and `g++ compiler` installed.
  * Build docs:
     * `make docs`
  * Run tests:
-    * `./build/bin test`
+    * `./build/bin --test`
 
 
 ## Usage
 Solves quadratic equation with real coefficients:
 
-`./build/bin`
+`./build/bin -i`
 
 Enter 3 real coefficients for quadratic equation:
 
 `1 2 1`
 
 See a result at standard output.
+
+Or use command line arguments:
+
+`./build/bin 1 2 1`
 
 
 ## Docs

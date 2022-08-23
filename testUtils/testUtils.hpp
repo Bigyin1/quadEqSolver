@@ -32,8 +32,8 @@ bool cmpSolutions(const eqSolution *s1, const eqSolution *s2);
 
 /**
  *  @brief Runs tests
- *  @param tests array
- *
+ *  @param tests array of tests
+ *  @param testsCount tests count
  */
 void runTests(const testCase tests[], size_t testsCount);
 

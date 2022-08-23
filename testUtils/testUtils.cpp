@@ -53,6 +53,7 @@ void runTests(const testCase tests[], const size_t testsCount) {
       reportFailedTest(&test.testEquation);
     }
   }
+
   printf("%sPASSED:%s %lu\t%sFAILED:%s %lu\n", green, resetColour,
-   passed, red, resetColour, testsCount - passed);
+          passed, red, resetColour, testsCount - passed);
 }

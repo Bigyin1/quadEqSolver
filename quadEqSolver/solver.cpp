@@ -10,9 +10,9 @@
 void printQuadEquation(const quadEquation *eq) {
   assert(eq != NULL);
 
-  printf("%lf(x^2) ", eq->a);
-  printf("%c %lf(x) ", eq->b >= 0 ? '+' : '-', fabs(eq->b));
-  printf("%c %lf", eq->c >= 0 ? '+' : '-', fabs(eq->c));
+  printf("%lf(x^2) ",   eq->a);
+  printf("%c %lf(x) ",  eq->b >= 0 ? '+' : '-', fabs(eq->b));
+  printf("%c %lf",      eq->c >= 0 ? '+' : '-', fabs(eq->c));
   printf(" = 0");
 }
 
@@ -79,7 +79,7 @@ void solveQuadEq(const quadEquation *eq,  eqSolution *s) {
         return;
     }
 
-    double descriminantRoot = sqrt(pow(eq->b, 2) - 4 * eq->a * eq->c);
+    double descriminantRoot = sqrt(eq->b * eq->b - 4 * eq->a * eq->c);
     if (isnan(descriminantRoot)) {
         s->state = NO_ROOTS;
         return;
