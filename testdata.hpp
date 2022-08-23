@@ -1,4 +1,7 @@
 /** @file  Data for quad equation tests */
+#include <float.h>
+#include <math.h>
+
 
 const testCase tests[] = {
   {
