@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <string.h>
+#include <ctype.h>
 #include "../quadEqSolver/solver.hpp"
 #include "../testUtils/testUtils.hpp"
 #include "input.hpp"
@@ -13,11 +14,15 @@
 /**
  *  @brief Makes terminal input queue empty
  */
-static void readOutTermInputQueue() {
+static bool readOutTermInputQueue() {
+  bool valid = true;
+
   while (1) {
     int c = getchar();
+    if (!isspace(c) && c != EOF)
+      valid = false;
     if (c == '\n' || c == EOF)
-      return;
+      return valid;
   }
 }
 
@@ -64,9 +69,8 @@ void interactive() {
   printf("Enter 3 real coefficients for quadratic equation:\n");
 
   while ((valuesRead = scanf("%lf %lf %lf", &a, &b, &c)) != EOF) {
-    if (valuesRead != 3) {
+    if (!readOutTermInputQueue()) {
       printf("Wrong input\n");
-      readOutTermInputQueue();
       continue;
     }
 
@@ -78,6 +82,7 @@ void interactive() {
 }
 
 void cmdArgs(char *args[3]) {
+  assert(args != NULL);
   assert(args[0] != NULL && args[1] != NULL && args[2] != NULL);
 
   double a = NAN, b = NAN, c = NAN;
